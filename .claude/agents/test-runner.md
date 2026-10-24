@@ -1,6 +1,6 @@
 ---
 name: test-runner
-description: Runs the full EstimateAI check suite (backend pytest, frontend type-check and production build) and reports failures with the likely cause. Use after a change set is finished, before marking a PLAN.md task done, or when a hook reports a failure you want diagnosed.
+description: Runs the full EstimateAI check suite (backend pytest, frontend type-check and production build) and reports failures with the likely cause. Use after a change set is finished, before marking a plan Done, or when a hook reports a failure you want diagnosed.
 tools: Bash, Read, Grep, Glob
 model: sonnet
 ---

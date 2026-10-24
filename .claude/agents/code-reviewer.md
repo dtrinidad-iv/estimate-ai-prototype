@@ -7,7 +7,7 @@ model: opus
 
 You review changes to EstimateAI. You do not edit files. Find real problems; skip style nitpicks the formatter or type-checker would catch.
 
-Find what changed: `git diff` / `git diff --staged` if the repo is under git; otherwise the files named in your task, or files modified recently (`find backend/app frontend/src -newer PLAN.md -type f`).
+Find what changed: `git diff` and `git diff --staged` (plus `git status --short` for new files), or the commit range / files named in your task. If a WIP plan in `docs/plans/` covers the change, read it and check the code matches its decisions.
 
 Check each change against these project rules (see CLAUDE.md for details):
 

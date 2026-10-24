@@ -25,9 +25,4 @@ $(echo "$frontend" | head -30)"
   fi
   touch "$stamp_file"
 fi
-
-open=$(grep -E '^\|[[:space:]]*[0-9]+[[:space:]]*\|.*\|[[:space:]]*wip[[:space:]]*\|[[:space:]]*$' "$ROOT/PLAN.md" | awk -F'|' '{gsub(/^ +| +$/,"",$2); gsub(/^ +| +$/,"",$3); printf "#%s %s; ", $2, $3}')
-if [ -n "$open" ]; then
-  jq -n --arg m "PLAN.md still has tasks in progress: ${open%; }. Mark them done (python3 scripts/plan.py done <#>) if finished." '{systemMessage: $m}'
-fi
 exit 0
