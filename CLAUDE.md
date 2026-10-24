@@ -45,7 +45,7 @@ Hooks in `.claude/settings.json` enforce part of this. After each Write/Edit, Py
 - **Formulas are data.** Material and labor quantities come from expressions in `app/config/pricebook.json` (seeded into the DB), evaluated by the safe AST evaluator in `app/formula.py`. Never use `eval`.
 - **Provenance.** Every measurement keeps `source`, `confidence`, `evidence` and `original_value`. Edits become `source="manual"`. Estimator line-item overrides set `overridden` and survive recalculation.
 - **Verification gates estimates.** `verification.py` errors block `generate_estimate`; warnings don't.
-- **Generic branding.** This is a portfolio prototype shown to multiple clients. Don't put real client, company or measurement-provider names or branding in code, samples or UI. Sample providers (SkyMeasure Pro, AeroRoof Analytics) are fictional.
+- **Generic branding.** This is a portfolio prototype shown to multiple clients. Don't put real client, company or measurement-provider names or branding in code, samples or UI. Sample providers are fictional and named neutrally (Demo Provider A/B); don't give demo data brand-like names that could belong to a real company.
 - **Claude API defaults:** model `claude-opus-5-5` (env `EXTRACTION_MODEL`), structured outputs via `client.beta.messages.parse` with the server-side fallback beta. Without `ANTHROPIC_API_KEY` the app must still work.
 
 ## Where things live

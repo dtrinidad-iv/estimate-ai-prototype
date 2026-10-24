@@ -14,7 +14,7 @@ Steps:
 1. Extract the text exactly as the app sees it:
    `cd backend && .venv/bin/python -c "from pathlib import Path; from app.extraction.text import extract_text; print(extract_text(Path('<pdf>')))"`
 2. Pick 2+ `fingerprints`: strings that appear on every report of this layout and in no other supported layout (compare with `app/extraction/providers/*.py`).
-3. Create `backend/app/extraction/providers/<key>.py` following `skymeasure.py` / `aeroroof.py`:
+3. Create `backend/app/extraction/providers/<key>.py` following `demo_a.py` / `demo_b.py`:
    - `patterns` map every field in `app/fields.py` the report states, one regex with one capture group per field, anchored with `^` where the layout allows.
    - Normalize in code: areas in squares × 100 → sq ft, `x:12` → x, LF/ft → ft. Never compute a value the report doesn't state.
    - Implement `parse_pitch_breakdown` if the report has an area-by-pitch table.
