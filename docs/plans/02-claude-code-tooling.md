@@ -1,7 +1,7 @@
 # 02 — Claude Code tooling
 
-**Status:** WIP (hooks written and tested; waiting for `.claude/settings.json` to be installed)
-**Commits:** `20f77fd` (CLAUDE.md, hooks, agents)
+**Status:** Done
+**Commits:** `20f77fd` (CLAUDE.md, hooks, agents), `867d78e` (settings: hooks enabled)
 
 ## Goal
 Make continued development smooth and safe: Claude knows the project's rules, checks run automatically, and recurring jobs have dedicated agents.
@@ -25,7 +25,6 @@ Out of scope: CI (plan 03).
 - `.gitignore`: `.claude/.last-green`, `.claude/settings.local.json`
 
 ## Verification
-Pipe-tested every script: success paths, plus a temporary failing test and a TS type error, both caught (exit 2 / `decision: block`) and then removed. Hooks haven't fired in a live session yet; that needs the settings file and `/hooks` or a restart.
-
-## Remaining
-- [ ] User installs `.claude/settings.json`, then commit `chore(claude): enable project hooks` and mark this plan Done.
+- Pipe-tested every script: success paths, plus a temporary failing test and a TS type error, both caught (exit 2 / `decision: block`) and then removed.
+- Live in a session started from the project folder: the SessionStart hook loaded the open plans, and writing a deliberately failing test made the PostToolUse hook run pytest and send the failure back. The probe was then removed.
+- Hooks only load when Claude Code is started inside `estimate-ai-prototype/`. From the parent folder they're ignored (skills still show up).

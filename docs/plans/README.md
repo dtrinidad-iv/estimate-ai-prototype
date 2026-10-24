@@ -11,7 +11,7 @@ Write one with `/plan-task <description>`, or approve a plan in plan mode (Claud
 | # | Plan | Status |
 |---|---|---|
 | 01 | [Prototype: PDF → verified measurements → estimate](01-prototype.md) | Done |
-| 02 | [Claude Code tooling](02-claude-code-tooling.md) | WIP |
+| 02 | [Claude Code tooling](02-claude-code-tooling.md) | Done |
 | 03 | [Git, GitHub and CI](03-git-and-ci.md) | Done |
 | 04 | [README screenshots and repo topics](04-readme-screenshots.md) | Done |
 | 05 | [One plan file per task](05-plans-per-file.md) | Done |
