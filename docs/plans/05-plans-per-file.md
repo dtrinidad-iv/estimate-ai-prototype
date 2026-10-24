@@ -1,7 +1,7 @@
 # 05 — One plan file per task
 
 **Status:** Done
-**Commits:** `991181b` (claude), `991181b` (docs)
+**Commits:** `9b3df47` (claude), `50f5092` (docs: plans 01–05, removed PLAN.md and scripts/plan.py)
 
 ## Goal
 Replace the single `PLAN.md` task table with one detailed file per plan in `docs/plans/`, following the same convention as the user's other projects. A plan approved in plan mode (or written with `/plan-task`) is saved as `docs/plans/NN-task-name.md` and tracked through Proposed → WIP → Done.
