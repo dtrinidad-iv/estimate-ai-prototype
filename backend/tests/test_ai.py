@@ -59,7 +59,7 @@ def test_area_reported_in_squares_is_converted_in_code():
 def test_known_templates_never_call_ai(samples, monkeypatch):
     monkeypatch.setattr(ai, "ai_available", lambda: True)
     monkeypatch.setattr(ai.anthropic, "Anthropic", lambda: (_ for _ in ()).throw(AssertionError("AI called")))
-    result, _ = pipeline.run_extraction(samples / "skymeasure_needs_review_oak_st.pdf")
+    result, _ = pipeline.run_extraction(samples / "demo_a_needs_review_oak_st.pdf")
     assert result.method == "template"
 
 

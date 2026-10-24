@@ -5,12 +5,12 @@ from ..types import ExtractedValue
 from .base import ProviderParser, to_decimal
 
 
-class AeroRoofParser(ProviderParser):
-    """AeroRoof reports areas in squares and slopes as 'x:12'; we normalize to sq ft and x/12."""
+class DemoProviderBParser(ProviderParser):
+    """Fictional demo layout: areas in squares and slopes as 'x:12'; we normalize to sq ft and x/12."""
 
-    key = "aeroroof"
-    name = "AeroRoof Analytics"
-    fingerprints = ["AEROROOF ANALYTICS", "Roof Geometry Summary"]
+    key = "demo_b"
+    name = "Demo Provider B"
+    fingerprints = ["DEMO PROVIDER B", "Roof Geometry Summary"]
     patterns = {
         "eaves_ft": r"^Eave Length\s+([\d,.]+)\s*LF",
         "rakes_ft": r"^Rake Length\s+([\d,.]+)\s*LF",
@@ -27,7 +27,7 @@ class AeroRoofParser(ProviderParser):
         # Summary is a one-row table: "ROOF SQUARES AREA PRIMARY SLOPE PLANES" then the values line.
         m = re.search(r"ROOF SQUARES\s+AREA\s+PRIMARY SLOPE\s+PLANES\s*\n\s*([\d.,]+)\s+([\d,]+)\s*SF\s+(\d+(?:\.\d+)?):12\s+(\d+)", text)
         if not m:
-            result.notes.append("AeroRoof summary table not found; area/pitch need manual entry.")
+            result.notes.append("Demo Provider B summary table not found; area/pitch need manual entry.")
             return
         evidence = m.group(0).replace("\n", " | ")
         for key, raw in [("reported_squares", m.group(1)), ("total_area_sqft", m.group(2)),

@@ -3,10 +3,12 @@ import re
 from .base import ProviderParser, to_decimal
 
 
-class SkyMeasureParser(ProviderParser):
-    key = "skymeasure"
-    name = "SkyMeasure Pro"
-    fingerprints = ["SkyMeasure Pro", "Report Summary"]
+class DemoProviderAParser(ProviderParser):
+    """Fictional demo layout: areas in sq ft, pitch as 'x/12', lengths in ft with counts."""
+
+    key = "demo_a"
+    name = "Demo Provider A"
+    fingerprints = ["DEMO PROVIDER A", "Report Summary"]
     patterns = {
         "total_area_sqft": r"^Total Roof Area\s+([\d,.]+)\s*sq\s*ft",
         "reported_squares": r"^Total Squares\s+([\d,.]+)",

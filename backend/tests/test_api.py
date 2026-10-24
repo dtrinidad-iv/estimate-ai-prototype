@@ -16,7 +16,7 @@ def test_upload_rejects_non_pdf(client):
 
 
 def test_upload_review_estimate_flow(client, samples):
-    pdf = (samples / "skymeasure_needs_review_oak_st.pdf").read_bytes()
+    pdf = (samples / "demo_a_needs_review_oak_st.pdf").read_bytes()
     report = client.post("/api/reports", files={"file": ("oak.pdf", pdf, "application/pdf")},
                          data={"job_name": "Oak St"}).json()
     assert report["job_name"] == "Oak St"

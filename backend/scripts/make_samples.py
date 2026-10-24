@@ -39,12 +39,12 @@ def table(rows, header_color, col_widths=None):
     return t
 
 
-def skymeasure(path: Path, address: str, report_no: str, m: dict, breakdown: list[tuple[str, int]]):
-    """SkyMeasure Pro: sq ft areas, 'x/12' pitch, lengths in ft with counts."""
+def demo_provider_a(path: Path, address: str, report_no: str, m: dict, breakdown: list[tuple[str, int]]):
+    """Demo Provider A: sq ft areas, 'x/12' pitch, lengths in ft with counts."""
     navy = colors.HexColor("#1d3557")
     doc = SimpleDocTemplate(str(path), pagesize=letter, topMargin=0.6 * inch)
     s = [
-        Paragraph("<font color='#1d3557' size=18><b>SkyMeasure Pro</b></font> &nbsp; Premium Roof Report", styles["Title"]),
+        Paragraph("<font color='#1d3557' size=18><b>DEMO PROVIDER A</b></font> &nbsp; Roof Measurement Report", styles["Title"]),
         Paragraph(f"Report #{report_no} &nbsp;|&nbsp; Property: {address}", styles["Normal"]),
         Spacer(1, 10), roof_sketch(navy), Spacer(1, 10),
         Paragraph("<b>Report Summary</b>", styles["Heading2"]),
@@ -68,17 +68,17 @@ def skymeasure(path: Path, address: str, report_no: str, m: dict, breakdown: lis
     s.append(table([["Roof Pitch", "Area (sq ft)", "% of Roof"]] +
                    [[p, f"{a:,}", f"{a / m['area'] * 100:.1f}%"] for p, a in breakdown], navy))
     s += [Spacer(1, 12), Paragraph(f"Suggested Waste Factor: {m['waste']}%", styles["Normal"]),
-          Spacer(1, 18), Paragraph("<font size=7 color=grey>SkyMeasure Pro is a fictional provider used for demonstration. "
+          Spacer(1, 18), Paragraph("<font size=7 color=grey>Demo Provider A is a fictional report layout used for demonstration. "
                                    "Measurements derived from aerial imagery.</font>", styles["Normal"])]
     doc.build(s)
 
 
-def aeroroof(path: Path, address: str, job_ref: str, m: dict, breakdown: list[tuple[str, float]]):
-    """AeroRoof Analytics: areas in squares, 'x:12' slopes, lengths in LF, different labels."""
+def demo_provider_b(path: Path, address: str, job_ref: str, m: dict, breakdown: list[tuple[str, float]]):
+    """Demo Provider B: areas in squares, 'x:12' slopes, lengths in LF, different labels."""
     teal = colors.HexColor("#0f766e")
     doc = SimpleDocTemplate(str(path), pagesize=letter, topMargin=0.6 * inch)
     s = [
-        Paragraph("<font color='#0f766e' size=18><b>AEROROOF ANALYTICS</b></font>", styles["Title"]),
+        Paragraph("<font color='#0f766e' size=18><b>DEMO PROVIDER B</b></font>", styles["Title"]),
         Paragraph(f"Roof Geometry Summary &nbsp;&middot;&nbsp; Job Ref {job_ref}", styles["Normal"]),
         Paragraph(f"Site Address: {address}", styles["Normal"]),
         Spacer(1, 10), roof_sketch(teal), Spacer(1, 10),
@@ -95,7 +95,7 @@ def aeroroof(path: Path, address: str, job_ref: str, m: dict, breakdown: list[tu
     s += [Spacer(1, 14), Paragraph("<b>Slope Breakdown</b>", styles["Heading2"]),
           table([["Slope", "Squares"]] + [[p, f"{q:.2f}"] for p, q in breakdown], teal, [1.5 * inch, 1.5 * inch]),
           Spacer(1, 14), Paragraph(f"Recommended Waste: {m['waste']}%", styles["Normal"]),
-          Spacer(1, 18), Paragraph("<font size=7 color=grey>AeroRoof Analytics is a fictional provider used for demonstration.</font>",
+          Spacer(1, 18), Paragraph("<font size=7 color=grey>Demo Provider B is a fictional report layout used for demonstration.</font>",
                                    styles["Normal"])]
     doc.build(s)
 
@@ -119,17 +119,17 @@ def field_worksheet(path: Path):
 
 def main():
     OUT.mkdir(exist_ok=True)
-    skymeasure(OUT / "skymeasure_1428_maple_ave.pdf", "1428 Maple Ave, Springfield", "SM-240918",
+    demo_provider_a(OUT / "demo_a_1428_maple_ave.pdf", "1428 Maple Ave, Springfield", "DA-240918",
                dict(area=2846, pitch=6, facets=14, ridges=92, ridges_n=4, hips=48, hips_n=2, valleys=36, valleys_n=3,
                     rakes=118, rakes_n=6, eaves=164, eaves_n=8, step=28, step_n=3, wall=14, wall_n=1,
                     perimeter=282, waste=12),
                [("6/12", 2410), ("4/12", 436)])
-    aeroroof(OUT / "aeroroof_77_ridgeview_dr.pdf", "77 Ridgeview Dr, Lakeside", "AR-55102",
+    demo_provider_b(OUT / "demo_b_77_ridgeview_dr.pdf", "77 Ridgeview Dr, Lakeside", "DB-55102",
              dict(squares=31.25, pitch=9, facets=18, ridges=104, hips=72, valleys=58, rakes=96, eaves=188,
                   step=42, wall=20, waste=14),
              [("9:12", 21.40), ("12:12", 7.85), ("4:12", 2.00)])
     # Deliberately inconsistent: pitch areas don't add up and the eaves line is missing.
-    skymeasure(OUT / "skymeasure_needs_review_oak_st.pdf", "9 Oak St, Riverton", "SM-240977",
+    demo_provider_a(OUT / "demo_a_needs_review_oak_st.pdf", "9 Oak St, Riverton", "DA-240977",
                dict(area=2200, pitch=5, facets=9, ridges=70, ridges_n=2, hips=20, hips_n=2, valleys=12, valleys_n=1,
                     rakes=96, rakes_n=4, step=18, step_n=2, wall=0, wall_n=0, perimeter=240, waste=10),
                [("5/12", 1650), ("3/12", 400)])

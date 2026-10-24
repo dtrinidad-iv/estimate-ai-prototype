@@ -7,9 +7,9 @@ def values(result):
     return {k: v.value for k, v in result.values.items()}
 
 
-def test_skymeasure_template(samples):
-    result, _ = run_extraction(samples / "skymeasure_1428_maple_ave.pdf", use_ai=False)
-    assert result.provider == "skymeasure" and result.method == "template"
+def test_demo_provider_a_template(samples):
+    result, _ = run_extraction(samples / "demo_a_1428_maple_ave.pdf", use_ai=False)
+    assert result.provider == "demo_a" and result.method == "template"
     v = values(result)
     assert v["total_area_sqft"] == Decimal("2846")
     assert v["predominant_pitch"] == 6
@@ -18,9 +18,9 @@ def test_skymeasure_template(samples):
     assert result.pitch_breakdown == [{"pitch": 6.0, "area_sqft": 2410.0}, {"pitch": 4.0, "area_sqft": 436.0}]
 
 
-def test_aeroroof_converts_squares_and_colon_pitch(samples):
-    result, _ = run_extraction(samples / "aeroroof_77_ridgeview_dr.pdf", use_ai=False)
-    assert result.provider == "aeroroof"
+def test_demo_provider_b_converts_squares_and_colon_pitch(samples):
+    result, _ = run_extraction(samples / "demo_b_77_ridgeview_dr.pdf", use_ai=False)
+    assert result.provider == "demo_b"
     v = values(result)
     assert v["total_area_sqft"] == 3125
     assert v["predominant_pitch"] == 9
@@ -29,7 +29,7 @@ def test_aeroroof_converts_squares_and_colon_pitch(samples):
 
 
 def test_missing_line_is_left_missing_not_guessed(samples):
-    result, _ = run_extraction(samples / "skymeasure_needs_review_oak_st.pdf", use_ai=False)
+    result, _ = run_extraction(samples / "demo_a_needs_review_oak_st.pdf", use_ai=False)
     assert "eaves_ft" not in result.values
 
 
