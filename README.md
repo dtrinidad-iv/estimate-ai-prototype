@@ -65,12 +65,32 @@ SQLite by default (`backend/data/estimateai.db`, created on first run). For Post
 
 ## Demo script (5 minutes)
 
-1. **SkyMeasure Pro sample** → *Use sample*. All checks pass; every value shows its source line from the PDF. *Generate estimate*.
+1. **Demo Provider A sample** → *Use sample*. All checks pass; every value shows its source line from the PDF. *Generate estimate*.
 2. On the estimate, click **Architectural laminated shingles** to see the math: `2,846 sq ft × 1.12 waste ÷ 33.333 = 95.63 → 96 bundles`. Change waste to 15% (quantities re-run), override a quantity (marked *Edited*, survives re-runs), change margin, and watch the price update.
-3. **AeroRoof sample**: a different layout with areas in *squares* and `9:12` pitch notation, normalized automatically. Steep charges are priced per pitch band from the slope table, not just the predominant pitch.
+3. **Demo Provider B sample**: a different layout with areas in *squares* and `9:12` pitch notation, normalized automatically. Steep charges are priced per pitch band from the slope table, not just the predominant pitch.
 4. **Report with problems**: estimating is blocked. Eaves are missing, and the pitch areas sum to 2,050 vs. 2,200 sq ft. Enter eaves, fix the pitch table, save → checks pass.
 5. **Unknown format**: a free-text worksheet. The generic parser finds most values at lower confidence. With an API key, AI fills the rest. Every one must be confirmed before the warnings clear.
 6. **Price book**: change a price; new estimates use it.
+
+## About the sample reports
+
+Roof measurement reports come from several aerial/satellite measurement companies, and each one lays out its PDF differently. The four bundled samples are **made up**: no real company's names, logos, layouts or customer data.
+
+| Sample | What it shows |
+|---|---|
+| **Demo Provider A** (`demo_a_1428_maple_ave.pdf`) | A known layout with clean data: areas in sq ft, pitch as `6/12`, lengths with counts. Verifies straight through. |
+| **Demo Provider B** (`demo_b_77_ridgeview_dr.pdf`) | A second known layout with different labels and units: areas in *squares*, pitch as `9:12`, a slope table across three pitches. |
+| **Report with problems** (`demo_a_needs_review_oak_st.pdf`) | Provider A's layout with the eaves missing and pitch areas that don't add up. Verification blocks the estimate. |
+| **Unknown format** (`field_worksheet_unknown_format.pdf`) | A free-text worksheet in no known layout. The generic parser and (optionally) AI read it, and every value is flagged for review. |
+
+**How a report is read** (`backend/app/extraction/`):
+
+1. **Detect the layout.** Each provider parser lists *fingerprints*, phrases that appear on every report of that layout and on no other. The first parser whose fingerprints are all in the PDF text wins.
+2. **Template parse.** The matching parser reads each field with a pattern written for that layout, converts units in code (squares → sq ft, `9:12` → 9), and records the PDF line each value came from (confidence 0.98).
+3. **No match:** the generic parser looks for common label wording in any text (confidence 0.70, needs confirmation). If fields are still missing, an API key is set and AI is enabled on upload, Claude reads only those, quoting where each came from. Numbers not found in the PDF text are flagged.
+4. **Verification** then checks the result, whichever path produced it.
+
+**Real providers.** A real provider's report works today through step 3, flagged for review. For reliable, fully automatic extraction, add a template parser from a real sample report: one small class in `providers/` plus a test in `tests/test_parsers.py`. The `provider-parser-builder` Claude Code agent does this from a sample PDF. Real report samples aren't committed to this repo, since they would contain customer data.
 
 ## Project layout
 

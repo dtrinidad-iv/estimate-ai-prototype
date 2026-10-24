@@ -13,13 +13,13 @@ Out of scope: CRM integration, production handoff, multi-company accounts, custo
 - **AI reads, code calculates.** Template parsers handle known layouts. A generic label parser handles unknown ones, and Claude (`claude-opus-5-5`, structured outputs, server-side refusal fallback) only fills fields still missing in unknown layouts. Unit conversion, checks, quantities and pricing are all deterministic `Decimal` code.
 - **Provenance per value:** source, confidence, PDF evidence, original value and a confirmed flag. Edits become `manual`.
 - **Formulas are data:** `pricebook.json` expressions run through a safe AST evaluator (`formula.py`). `eval` is never used.
-- **Fictional sample providers** (SkyMeasure Pro, AeroRoof Analytics), so the demo copies nobody's format or branding.
+- **Fictional sample providers** (SkyMeasure Pro, AeroRoof Analytics; renamed to Demo Provider A/B in plan 06), so the demo copies nobody's format or branding.
 - **Port 8010.** Port 8000 belongs to another local project.
 
 ## Backend (`backend/`)
 - `app/models.py`: Job, Report, Measurement, Material, LaborRate, Assembly, Estimate, LineItem.
 - `app/fields.py`: canonical measurement fields (area, pitch, facets, ridge/hip/valley/rake/eave, flashing, perimeter, squares, waste).
-- `app/extraction/`: `text.py` (pdfplumber), `providers/` (SkyMeasure, AeroRoof and generic parsers, plus a registry), `ai.py` (Claude fallback that checks every number against the PDF text), `pipeline.py`.
+- `app/extraction/`: `text.py` (pdfplumber), `providers/` (two demo-layout parsers and a generic parser, plus a registry), `ai.py` (Claude fallback that checks every number against the PDF text), `pipeline.py`.
 - `app/verification.py`: errors (missing required field, pitch areas more than 5% off, pitch out of range, zero eaves) block estimating. Warnings: squares and perimeter mismatches, low slope, implausible geometry, unconfirmed generic or AI values.
 - `app/calculator.py`: `ceil(basis × (1+waste) / coverage)`, default waste from the report or roof complexity, steep-charge bands taken from the area-by-pitch table.
 - `app/services.py`: create report, update measurements, generate estimate from an assembly, recalc that keeps overrides, totals. `price = cost / (1 − margin)`, rounded up to the next $10.
