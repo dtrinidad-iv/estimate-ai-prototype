@@ -5,9 +5,9 @@ import { href, navigate } from '../router'
 
 // Display order and descriptions for the bundled demo reports.
 const SAMPLE_INFO: Record<string, { title: string; blurb: string }> = {
-  'skymeasure_1428_maple_ave.pdf': { title: 'SkyMeasure Pro report', blurb: 'Known provider, clean data. Should verify straight through.' },
-  'aeroroof_77_ridgeview_dr.pdf': { title: 'AeroRoof Analytics report', blurb: 'Different layout, areas in squares, steep 9/12 & 12/12 sections.' },
-  'skymeasure_needs_review_oak_st.pdf': { title: 'Report with problems', blurb: 'Missing eaves and pitch areas that don’t add up. Verification blocks it.' },
+  'demo_a_1428_maple_ave.pdf': { title: 'Demo Provider A report', blurb: 'Known layout, clean data. Should verify straight through.' },
+  'demo_b_77_ridgeview_dr.pdf': { title: 'Demo Provider B report', blurb: 'Different layout, areas in squares, steep 9/12 & 12/12 sections.' },
+  'demo_a_needs_review_oak_st.pdf': { title: 'Report with problems', blurb: 'Missing eaves and pitch areas that don’t add up. Verification blocks it.' },
   'field_worksheet_unknown_format.pdf': { title: 'Unknown format', blurb: 'Free-text field worksheet. Generic parser + AI fallback, flagged for review.' },
 }
 
