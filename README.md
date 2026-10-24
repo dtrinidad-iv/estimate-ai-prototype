@@ -1,8 +1,12 @@
 # EstimateAI
 
+[![CI](https://github.com/dtrinidad-iv/estimate-ai-prototype/actions/workflows/ci.yml/badge.svg)](https://github.com/dtrinidad-iv/estimate-ai-prototype/actions/workflows/ci.yml)
+
 Upload a roof measurement report → extract and verify the measurements → get a material & labor estimate with a recommended selling price.
 
-A working prototype of an estimating platform for roofing contractors: Python (FastAPI) back end, React front end, a configurable price book, and AI used only where it's safe — reading unfamiliar report layouts, never doing the math.
+A working prototype of an estimating platform for roofing contractors: Python (FastAPI) back end, React front end, a configurable price book, and AI powered by Claude, used only where it's safe. Claude reads report layouts the parsers don't recognize. It never does the math.
+
+**Contents:** [Screenshots](#screenshots) · [What it does](#what-it-does) · [Quick start](#quick-start) · [Demo script](#demo-script-5-minutes) · [Project layout](#project-layout) · [Roadmap](#roadmap) · [Working with Claude Code](#working-with-claude-code) · [Contributing](#contributing)
 
 ![Estimate with material quantities, labor and recommended selling price](docs/screenshots/estimate.png)
 
@@ -98,3 +102,22 @@ docs/DESIGN.md          architecture and design decisions
 - **More providers:** add a template parser per real provider once sample reports are available. Unknown layouts already work through the generic + AI path.
 - **Multi-company:** per-company price books, branding, and users, for offering the platform as SaaS.
 - **Customer-facing proposal:** branded PDF with good/better/best options.
+
+Each item gets its own plan in [docs/plans/](docs/plans/README.md) when work starts.
+
+## Working with Claude Code
+
+The repo was built with [Claude Code](https://claude.com/claude-code) and ships the setup it used in `.claude/`. [CLAUDE.md](CLAUDE.md) holds the rules it follows.
+
+| | |
+|---|---|
+| **Skills** | `/plan-task` writes a plan in `docs/plans/` and waits for approval · `/ship-plan` checks, commits, pushes and marks the plan Done |
+| **Agents** | `test-runner` runs every check and explains failures · `code-reviewer` (read-only) checks changes against the project rules · `provider-parser-builder` adds a new measurement-report layout from a sample PDF, with tests |
+| **Hooks** | After each edit, Python changes run the backend tests and TypeScript changes run the type-check. Before Claude finishes, the full check runs if code changed. At session start, the open plans are loaded |
+| **CI** | GitHub Actions runs the same backend tests, type-check and build on every push and pull request |
+
+A typical change: `/plan-task` (or plan mode), approve, build with tests, run `test-runner` and `code-reviewer`, then `/ship-plan`.
+
+## Contributing
+
+Read [CLAUDE.md](CLAUDE.md) for the rules: AI reads and code calculates, `Decimal` for money and quantities, formulas stay in the price book, every measurement keeps its source, and docs change in the same commit as the code they describe. Then see [docs/plans/](docs/plans/README.md) for how the project was built, plan by plan, including follow-ups. Architecture details are in [docs/DESIGN.md](docs/DESIGN.md).
