@@ -18,7 +18,7 @@ A working prototype of an estimating platform for roofing contractors: Python (F
 |---|---|
 | ![Upload page with sample reports and recent jobs](docs/screenshots/home.png) | ![Review page: missing eaves and pitch areas that don't add up block the estimate](docs/screenshots/review-blocked.png) |
 | **Unknown formats are flagged for review** | **Formulas and prices live in the price book** |
-| ![Review page: values from an unrecognized worksheet, each shown with its source text and confidence](docs/screenshots/review-unknown-format.png) | ![Price book with quantity formulas, coverage, waste and prices](docs/screenshots/pricebook.png) |
+| ![Review page: an unrecognized worksheet read by the generic parser and Claude, each value shown with its source text and confidence](docs/screenshots/review-unknown-format.png) | ![Price book with quantity formulas, coverage, waste and prices](docs/screenshots/pricebook.png) |
 
 ## What it does
 
@@ -47,17 +47,22 @@ npm install
 
 **Development (hot reload):** `./dev.sh` → open http://localhost:5173
 
-**Single-process demo:** `cd frontend && npm run build`, then `cd ../backend && .venv/bin/uvicorn app.main:app --port 8010` → open http://localhost:8010
+**Single-process demo:** `cd frontend && npm run build`, then `cd ../backend && .venv/bin/uvicorn app.main:app --port 8010` (add `--env-file .env` if you created one) → open http://localhost:8010
 
 **Tests:** `cd backend && .venv/bin/python -m pytest`
 
 ### Optional: AI extraction
 
 ```bash
+# in backend/.env (gitignored; ./dev.sh loads it):
+ANTHROPIC_API_KEY=sk-ant-...
+# or in your shell:
 export ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-With a key set, reports in unknown formats are also read by Claude (`claude-opus-5-5` by default, override with `EXTRACTION_MODEL`). Without one, the app still works: unknown formats use the generic parser and the reviewer fills any gaps. Set `AI_EXTRACTION=off` to disable it explicitly.
+With a key set, reports in unknown formats are also read by Claude (`claude-opus-5-5` by default, override with `EXTRACTION_MODEL`), as long as "Use AI" is checked on upload. Without one, the app still works: unknown formats use the generic parser and the reviewer fills any gaps. Set `AI_EXTRACTION=off` to disable it explicitly.
+
+To check the AI path against the real API (one API call): `cd backend && .venv/bin/python -m scripts.check_ai_live`. It reads the unknown-format sample and checks that AI fills only missing fields, quotes its source, flags numbers it can't find in the PDF text, and that the demo samples never call AI.
 
 ### Database
 

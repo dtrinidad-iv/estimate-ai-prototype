@@ -15,7 +15,7 @@ Make the public repo read well as a portfolio piece.
 - `docs/screenshots/estimate.png`: hero; estimate with summary and recommended price (Demo Provider B sample).
 - `docs/screenshots/home.png`: upload, samples, recent jobs.
 - `docs/screenshots/review-blocked.png`: missing eaves and pitch areas that don't add up block the estimate.
-- `docs/screenshots/review-unknown-format.png`: generic-parser values flagged for review, with source text.
+- `docs/screenshots/review-unknown-format.png`: generic-parser values flagged for review, with source text. Retaken in plan 07 with an API key, so it also shows an AI-read value; retake it with the key set.
 - `docs/screenshots/pricebook.png`: formulas, coverage, waste, prices.
 
 To retake: delete `backend/data/estimateai.db`, start on 8010, load the samples (worksheet, oak, maple, demo B, in that order), create estimates for reports 3 and 4, and capture `#/`, `#/report/2`, `#/report/1`, `#/estimate/2`, `#/pricebook`.

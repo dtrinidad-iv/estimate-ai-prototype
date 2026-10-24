@@ -47,5 +47,5 @@ Out of scope: CRM integration, production handoff, multi-company accounts, custo
 pytest, `tsc -b` and `npm run build` pass. Each page was checked in headless Chrome screenshots at desktop and 500px width. The AI path is tested only with the fake client; no live API key was available.
 
 ## Follow-ups
-- Live test of AI extraction with a real `ANTHROPIC_API_KEY`.
+- Live test of AI extraction with a real `ANTHROPIC_API_KEY`. Done in plan 07.
 - Alembic migrations before the schema changes again.
