@@ -12,6 +12,7 @@ Roofing estimating app: upload a roof measurement PDF → extract and verify mea
 | Dev servers (API :8010 + Vite :5173) | `./dev.sh` |
 | Single-process demo | build frontend, then `cd backend && .venv/bin/uvicorn app.main:app --port 8010` |
 | Regenerate sample PDFs | `cd backend && .venv/bin/python -m scripts.make_samples` |
+| Live AI extraction check (real API, costs a call) | `cd backend && .venv/bin/python -m scripts.check_ai_live` |
 | Plan a task / ship it | `/plan-task <description>` · `/ship-plan NN` |
 
 The API runs on **port 8010**. Port 8000 belongs to another local project; don't use or kill it.
