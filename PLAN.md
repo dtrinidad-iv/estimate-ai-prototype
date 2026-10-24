@@ -46,3 +46,4 @@ Update with `python3 scripts/plan.py <status> <task#>`; add with `python3 script
 | 24 | Real provider templates | Add a template parser per real measurement provider from client sample reports | pending |
 | 25 | Customer proposal PDF | Branded proposal with good/better/best options from assemblies | pending |
 | 26 | Multi-company SaaS | Per-company price books, branding, users and auth | pending |
+| 27 | Portfolio polish | Repo topics, README screenshots | done |

@@ -4,7 +4,17 @@ Upload a roof measurement report → extract and verify the measurements → get
 
 A working prototype of an estimating platform for roofing contractors: Python (FastAPI) back end, React front end, a configurable price book, and AI used only where it's safe — reading unfamiliar report layouts, never doing the math.
 
+![Estimate with material quantities, labor and recommended selling price](docs/screenshots/estimate.png)
+
 ![flow](docs/flow.svg)
+
+## Screenshots
+
+| Upload or try a sample | Verification blocks bad data |
+|---|---|
+| ![Upload page with sample reports and recent jobs](docs/screenshots/home.png) | ![Review page: missing eaves and pitch areas that don't add up block the estimate](docs/screenshots/review-blocked.png) |
+| **Unknown formats are flagged for review** | **Formulas and prices live in the price book** |
+| ![Review page: values from an unrecognized worksheet, each shown with its source text and confidence](docs/screenshots/review-unknown-format.png) | ![Price book with quantity formulas, coverage, waste and prices](docs/screenshots/pricebook.png) |
 
 ## What it does
 
