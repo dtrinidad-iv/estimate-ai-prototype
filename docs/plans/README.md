@@ -15,3 +15,4 @@ Write one with `/plan-task <description>`, or approve a plan in plan mode (Claud
 | 03 | [Git, GitHub and CI](03-git-and-ci.md) | Done |
 | 04 | [README screenshots and repo topics](04-readme-screenshots.md) | Done |
 | 05 | [One plan file per task](05-plans-per-file.md) | Done |
+| 06 | [Neutral demo provider names + README explanation](06-demo-provider-names.md) | Done |
