@@ -1,0 +1,12 @@
+backend/.venv/
+backend/data/*.db
+backend/uploads/*
+!backend/uploads/.gitkeep
+__pycache__/
+.pytest_cache/
+frontend/node_modules/
+frontend/dist/
+.env
+.DS_Store
+.claude/.last-green
+.claude/settings.local.json

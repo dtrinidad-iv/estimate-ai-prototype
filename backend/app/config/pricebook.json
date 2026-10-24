@@ -1,0 +1,39 @@
+{
+  "_note": "Illustrative prices in USD. Formulas are evaluated by app/formula.py (arithmetic only, no AI). Quantity = ceil(basis x (1 + waste%) / coverage_per_unit).",
+  "materials": [
+    {"sku": "SHG-ARCH", "name": "Architectural laminated shingles", "category": "Shingles", "unit": "bundle", "unit_cost": "42.50", "basis": "total_area_sqft", "coverage_per_unit": "33.333", "coverage_note": "33.3 sq ft per bundle (3 bundles / square)", "waste": "job", "manufacturer_spec": "5-5/8\" exposure, 4-6 nails per shingle"},
+    {"sku": "SHG-3TAB", "name": "3-tab shingles", "category": "Shingles", "unit": "bundle", "unit_cost": "34.00", "basis": "total_area_sqft", "coverage_per_unit": "33.333", "coverage_note": "33.3 sq ft per bundle (3 bundles / square)", "waste": "job", "manufacturer_spec": "5\" exposure"},
+    {"sku": "STARTER", "name": "Starter strip shingles", "category": "Shingles", "unit": "bundle", "unit_cost": "58.00", "basis": "eaves_ft + rakes_ft", "coverage_per_unit": "116", "coverage_note": "116 lf per bundle", "waste": "5", "manufacturer_spec": "Install along eaves and rakes"},
+    {"sku": "HIPRIDGE", "name": "Hip & ridge cap shingles", "category": "Shingles", "unit": "bundle", "unit_cost": "72.00", "basis": "ridges_ft + hips_ft", "coverage_per_unit": "25", "coverage_note": "25 lf per bundle", "waste": "5", "manufacturer_spec": null},
+    {"sku": "UL-SYN", "name": "Synthetic underlayment (10 sq roll)", "category": "Underlayment", "unit": "roll", "unit_cost": "115.00", "basis": "total_area_sqft", "coverage_per_unit": "1000", "coverage_note": "1,000 sq ft per roll", "waste": "10", "manufacturer_spec": "4\" side laps, 6\" end laps"},
+    {"sku": "IWS", "name": "Ice & water shield (3' x 66.7')", "category": "Underlayment", "unit": "roll", "unit_cost": "95.00", "basis": "eaves_ft * 2 + valleys_ft", "coverage_per_unit": "66.7", "coverage_note": "66.7 lf per roll; 2 courses at eaves, 1 in valleys", "waste": "10", "manufacturer_spec": "Min. 24\" inside exterior wall line"},
+    {"sku": "DRIP", "name": "Drip edge (10')", "category": "Metal", "unit": "piece", "unit_cost": "9.75", "basis": "eaves_ft + rakes_ft", "coverage_per_unit": "10", "coverage_note": "10 lf per piece", "waste": "5", "manufacturer_spec": null},
+    {"sku": "VALLEY", "name": "W-valley metal (10')", "category": "Metal", "unit": "piece", "unit_cost": "22.00", "basis": "valleys_ft", "coverage_per_unit": "10", "coverage_note": "10 lf per piece", "waste": "5", "manufacturer_spec": null},
+    {"sku": "STEPFL", "name": "Step flashing 4x4x8 (100 ct)", "category": "Metal", "unit": "box", "unit_cost": "48.00", "basis": "step_flashing_ft * 12 / 5", "coverage_per_unit": "100", "coverage_note": "1 piece per 5\" course, 100 per box", "waste": "5", "manufacturer_spec": null},
+    {"sku": "WALLFL", "name": "Headwall / apron flashing (10')", "category": "Metal", "unit": "piece", "unit_cost": "14.50", "basis": "wall_flashing_ft", "coverage_per_unit": "10", "coverage_note": "10 lf per piece", "waste": "5", "manufacturer_spec": null},
+    {"sku": "RIDGEVENT", "name": "Shingle-over ridge vent (4')", "category": "Ventilation", "unit": "piece", "unit_cost": "18.50", "basis": "ridges_ft", "coverage_per_unit": "4", "coverage_note": "4 lf per piece", "waste": "0", "manufacturer_spec": null},
+    {"sku": "NAILS-COIL", "name": "Coil roofing nails 1-1/4\" (7,200 ct)", "category": "Fasteners", "unit": "box", "unit_cost": "52.00", "basis": "squares", "coverage_per_unit": "20", "coverage_note": "~20 squares per box", "waste": "job", "manufacturer_spec": null},
+    {"sku": "NAILS-CAP", "name": "Plastic cap nails (2,000 ct)", "category": "Fasteners", "unit": "bucket", "unit_cost": "38.00", "basis": "squares", "coverage_per_unit": "20", "coverage_note": "~20 squares per bucket", "waste": "0", "manufacturer_spec": null},
+    {"sku": "SEALANT", "name": "Roofing sealant (10 oz)", "category": "Accessories", "unit": "tube", "unit_cost": "8.50", "basis": "2 + (step_flashing_ft + wall_flashing_ft) / 50", "coverage_per_unit": "1", "coverage_note": "2 tubes + 1 per 50 lf of flashing", "waste": "0", "manufacturer_spec": null}
+  ],
+  "labor": [
+    {"code": "TEAROFF", "kind": "labor", "name": "Tear-off, 1 layer", "unit": "sq", "rate": "55.00", "basis": "squares", "rounding": "none"},
+    {"code": "INSTALL", "kind": "labor", "name": "Install shingle roof system", "unit": "sq", "rate": "85.00", "basis": "squares", "rounding": "none"},
+    {"code": "STEEP-8-9", "kind": "labor", "name": "Steep charge 8/12-9/12", "unit": "sq", "rate": "20.00", "basis": "steep_8_9_sq", "rounding": "none"},
+    {"code": "STEEP-10-12", "kind": "labor", "name": "Steep charge 10/12-12/12", "unit": "sq", "rate": "40.00", "basis": "steep_10_12_sq", "rounding": "none"},
+    {"code": "STEEP-13", "kind": "labor", "name": "Steep charge over 12/12", "unit": "sq", "rate": "65.00", "basis": "steep_13_plus_sq", "rounding": "none"},
+    {"code": "FLASHING", "kind": "labor", "name": "Step & wall flashing install", "unit": "lf", "rate": "6.50", "basis": "step_flashing_ft + wall_flashing_ft", "rounding": "none"},
+    {"code": "RIDGEVENT-L", "kind": "labor", "name": "Cut & install ridge vent", "unit": "lf", "rate": "4.00", "basis": "ridges_ft", "rounding": "none"},
+    {"code": "DUMPSTER", "kind": "other", "name": "Dumpster, 20 yd (~25 sq per load)", "unit": "each", "rate": "475.00", "basis": "squares / 25", "rounding": "ceil"},
+    {"code": "PERMIT", "kind": "other", "name": "Building permit", "unit": "each", "rate": "250.00", "basis": "1", "rounding": "none"}
+  ],
+  "assemblies": [
+    {"code": "ARCH-STD", "name": "Architectural shingle re-roof", "description": "Tear-off and replace with architectural shingles, synthetic underlayment, ice & water at eaves/valleys, new metal and ridge vent.",
+     "material_skus": ["SHG-ARCH", "STARTER", "HIPRIDGE", "UL-SYN", "IWS", "DRIP", "VALLEY", "STEPFL", "WALLFL", "RIDGEVENT", "NAILS-COIL", "NAILS-CAP", "SEALANT"],
+     "labor_codes": ["TEAROFF", "INSTALL", "STEEP-8-9", "STEEP-10-12", "STEEP-13", "FLASHING", "RIDGEVENT-L", "DUMPSTER", "PERMIT"]},
+    {"code": "3TAB-ECON", "name": "Economy 3-tab re-roof", "description": "Tear-off and replace with 3-tab shingles, synthetic underlayment, ice & water at eaves/valleys, new drip edge and flashing.",
+     "material_skus": ["SHG-3TAB", "STARTER", "HIPRIDGE", "UL-SYN", "IWS", "DRIP", "STEPFL", "WALLFL", "NAILS-COIL", "NAILS-CAP", "SEALANT"],
+     "labor_codes": ["TEAROFF", "INSTALL", "STEEP-8-9", "STEEP-10-12", "STEEP-13", "FLASHING", "DUMPSTER", "PERMIT"]}
+  ],
+  "defaults": {"margin_pct": "35", "tax_pct": "7.5"}
+}
