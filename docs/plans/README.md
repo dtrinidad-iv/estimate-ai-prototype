@@ -16,3 +16,4 @@ Write one with `/plan-task <description>`, or approve a plan in plan mode (Claud
 | 04 | [README screenshots and repo topics](04-readme-screenshots.md) | Done |
 | 05 | [One plan file per task](05-plans-per-file.md) | Done |
 | 06 | [Neutral demo provider names + README explanation](06-demo-provider-names.md) | Done |
+| 07 | [Live check of AI extraction](07-live-ai-extraction-check.md) | Done |
